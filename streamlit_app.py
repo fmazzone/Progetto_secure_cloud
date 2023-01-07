@@ -1,0 +1,180 @@
+import streamlit as st
+import pandas as pd
+import time
+import joblib
+
+
+
+st.set_page_config(
+ page_title="Weather Forecast App",
+ page_icon="🌡️",layout="wide", 
+ initial_sidebar_state="expanded"
+)
+
+st.markdown(""" 
+<style>
+div.stButton > button:first-child {
+background-color: #4682B4;color:WhiteSmoke;font-size:20px;height:3em;width:10em;border-radius:10px 10px 10px 10px;
+}
+.css-2trqyj:focus:not(:active) {
+border-color: #ffffff;
+box-shadow: none;
+color: #ffffff;
+background-color: #3f5973;
+}
+.css-2trqyj:focus:(:active) {
+border-color: #ffffff;
+box-shadow: none;
+color: #ffffff;
+background-color: #3f5973;
+}
+.css-2trqyj:focus:active){
+background-color: #3f5973;
+border-color: #ffffff;
+box-shadow: none;
+color: #ffffff;
+background-color: #0066cc;
+}
+</style>""", unsafe_allow_html=True)    
+
+def add_bg_from_url():
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://media.istockphoto.com/id/510656547/video/soft-moving-cloud-for-weather-report-background.jpg?s=640x640&k=20&c=xBW8VeBDgE5IPpwrprN45GOe7HYU_Q1Rh7Q7WZdjIZo=");
+             #https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png
+             #https://miro.medium.com/max/680/1*KYrYFzjUUlKSZlgFDzEEDg.png
+             background-attachment: fixed;
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
+
+add_bg_from_url() 
+
+st.title('_Weather Forecast_')
+st.subheader('Città considerate per la predizione')
+
+df = pd.DataFrame({
+   'Città':['Milano', 'Torino', 'Firenze', 'Bologna', 'Roma', 'Napoli', 'Palermo'],
+    'lat':[45.464664, 45.116177,  43.769562, 44.498955, 41.902782, 40.853294, 38.116669],
+    'lon':[9.188540, 7.742615, 11.255814, 11.327591, 12.496366, 14.305573, 13.366667]
+})
+
+st.map(df)
+
+# ------ layout setting---------------------------
+window_selection_c = st.sidebar.container() # create an empty container in the sidebar
+window_selection_c.markdown("## _Dati_") # add a title to the sidebar container
+window_selection_c.text("Compilare i campi"+ "\n" +"e fare clic sul pulsante Predici."+ "\n" + "Puoi scegliere se compilare"+ "\n" + "tutti i campi o solo alcuni.")
+sub_columns = window_selection_c.columns(1)
+
+#informazioni base
+città = sub_columns[0].selectbox('Seleziona città',('Milano', 'Torino', 'Bologna', 'Firenze', 'Roma', 'Napoli', 'Palermo'))
+temperatura = sub_columns[0].number_input('Seleziona temperatura °', -10, 50, 0)
+vento = sub_columns[0].number_input('Seleziona velocità vento km/h', 0, 140, 0)
+umidità = sub_columns[0].number_input('Seleziona umidità %', 0, 100, 0)
+
+#informazioni avanzate
+precipitazioni = sub_columns[0].number_input('Seleziona precipirazioni mm', 0, 2000, 0)
+pressione = sub_columns[0].number_input('Seleziona pressione Pa', 0, 100, 0)
+visibilità = sub_columns[0].number_input('Seleziona visibilità km', 0.0, 10.0, 0.0)
+copertura = sub_columns[0].number_input('Seleziona copertura nuvolosa %', 0, 100, 0)
+
+col1, col2, col3,col4,col5,col6,col7, = st.columns(7) #divido la pagina in tante colonne quante sono le città
+
+condMil=''
+condTor=''
+condFir=''
+condBol=''
+condRoma=''
+condNap=''
+condPal=''
+
+with col1:
+   st.subheader("_MILANO_")
+   st.image("https://media.istockphoto.com/id/494084426/photo/milano-spirit.jpg?s=612x612&w=0&k=20&c=oRg0sCqikaBWGXSIgnvNVVu2cpHty9MF0spdieqpYoM=")
+   st.metric("Condizione", condMil)
+   #aggiunta di dati real-time
+  # with st.expander("Dati real time"):
+  #   st.metric("Temperatura", "°")
+  #   st.metric("Vento", "km/h")
+  #   st.metric("Umidità", "%")
+    
+with col2:
+   st.subheader("_TORINO_")
+   st.image("https://media.istockphoto.com/id/940619078/photo/view-of-turin-city-centre-turin-italy.jpg?s=612x612&w=0&k=20&c=3vs4AeYD5yAQuig7P6lD02wsRBaKAQPXi_wGVdQQxro=")
+   st.metric("Condizione", condTor)
+
+    
+with col3:
+   st.subheader("_FIRENZE_")
+   st.image("https://media.istockphoto.com/id/483876975/photo/panorama-of-florence-and-saint-mary.jpg?s=612x612&w=0&k=20&c=tK2fS2Vaoq6-r0kD1NOfz8IrgXCrP3bVjfTBUZv7z5I=")
+   st.metric("Condizione", condFir)
+
+  
+with col4:
+   st.subheader("_BOLOGNA_")
+   st.image("https://static2-viaggi.corriereobjects.it/wp-content/uploads/2020/01/bologna.jpg?v=415423")
+   st.metric("Condizione", condBol)
+
+    
+with col5:
+   st.subheader("_ROMA_")
+   st.image("https://media.istockphoto.com/id/539115110/photo/colosseum-in-rome-and-morning-sun-italy.jpg?s=612x612&w=0&k=20&c=9NtFxHI3P2IBWRY9t0NrfPZPR4iusHmVLbXg2Cjv9Fs=")
+   st.metric("Condizione", condRoma)
+
+  
+with col6:
+   st.subheader("_NAPOLI_")
+   st.image("https://media.istockphoto.com/id/1327485657/photo/naples-at-sunset-gulf-of-naples-italy.jpg?b=1&s=170667a&w=0&k=20&c=Bji5m-48zMeGQ8mwo4a9wof3rQnSJzaIYpU5OlnGVIs=")
+   st.metric("Condizione", condNap)
+ 
+    
+with col7:
+   st.subheader("_PALERMO_")
+   st.image("https://www.filoteapasta.com/wp-content/uploads/2019/07/Cattedrale-Palermo.jpg")
+   st.metric("Condizione", condPal)
+ 
+ ##________Pred
+ ### Aggiungere controllo della città per cui fare la predizione
+ 
+'''@st.cache(allow_output_mutation=True)
+def load(scaler_path, model_path):
+    sc = joblib.load(scaler_path)
+    model = joblib.load(model_path)
+    return sc, model
+
+def inference(row, scaler, model, feat_cols):
+    df = pd.DataFrame([row], columns = feat_cols)
+    X = scaler.transform(df)
+    features = pd.DataFrame(X, columns = feat_cols)
+    if (model.predict(features)==0):
+        return "This is a healthy person!"
+    else:
+        return "This person has high chances of having diabetics!'''
+ 
+row = ['temperatura', 'vento', 'umidità', 'precipitazioni', 'pressione', 'visibilità', 'copertura' ] #città deve essere inserito ?
+ 
+if st.button("Predici"):
+   with st.spinner('Attendere...'): 
+    time.sleep(5)
+   
+   #feat_cols =['tempc', 'windspeedKmph", 'precip', 'humidity', 'visibility', 'pressure', 'cloudcover']
+
+   ##sc, model = load('models/scaler.joblib', 'models/model.joblib')
+   ###result = inference(row, sc, model, feat_cols)
+   
+    if result==0:
+        predetto='Rain'
+    elif result==1:
+        predetto='Rain'
+    elif result==2:
+        predetto='Rain'
+    elif result==3:
+        predetto='Rain'
+    else: 
+        predetto='Rain'

@@ -1,0 +1,6 @@
+pandas
+streamlit
+joblib
+numpy
+pandas-profiling
+scikit-learn
