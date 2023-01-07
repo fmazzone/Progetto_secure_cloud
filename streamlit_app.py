@@ -141,40 +141,39 @@ with col7:
  
  ##________Pred
  ### Aggiungere controllo della città per cui fare la predizione
- 
-'''@st.cache(allow_output_mutation=True)
-def load(scaler_path, model_path):
-    sc = joblib.load(scaler_path)
+
+@st.cache(allow_output_mutation=True)
+def load(model_path, scaler_path, encoder_path):
     model = joblib.load(model_path)
-    return sc, model
+    scaler = joblib.load(scaler_path)
+    encoder = joblib.load(encoder_path)
+    return model, scaler, encoder
 
-def inference(row, scaler, model, feat_cols):
-    df = pd.DataFrame([row], columns = feat_cols)
+
+def inference(row, model, scaler, encoder, feat_cols):
+    df = pd.DataFrame([row], columns=feat_cols)
     X = scaler.transform(df)
-    features = pd.DataFrame(X, columns = feat_cols)
-    if (model.predict(features)==0):
-        return "This is a healthy person!"
-    else:
-        return "This person has high chances of having diabetics!'''
- 
-row = ['temperatura', 'vento', 'umidità', 'precipitazioni', 'pressione', 'visibilità', 'copertura' ] #città deve essere inserito ?
- 
-if st.button("Predici"):
-   with st.spinner('Attendere...'): 
-    time.sleep(5)
-   
-   #feat_cols =['tempc', 'windspeedKmph", 'precip', 'humidity', 'visibility', 'pressure', 'cloudcover']
+    features = pd.DataFrame(X, columns=feat_cols)
+    prediction = model.predict(features)
+    prediction = encoder.inverse_transform(prediction)
+    return "Domani prevedo che il meteo sarà: " + prediction
 
-   ##sc, model = load('models/scaler.joblib', 'models/model.joblib')
-   ###result = inference(row, sc, model, feat_cols)
-   
-    if result==0:
-        predetto='Rain'
-    elif result==1:
-        predetto='Rain'
-    elif result==2:
-        predetto='Rain'
-    elif result==3:
-        predetto='Rain'
-    else: 
-        predetto='Rain'
+
+row = [temperatura, vento, umidità, precipitazioni, pressione, visibilità, copertura]
+
+if st.button('_Predici_'):
+    with st.spinner('Attendere...'):
+        time.sleep(5)
+
+        feat_cols = ['tempC', 'windspeedKmph', 'precipMM', 'humidity', 'visibility', 'pressure', 'cloudcover']
+
+        # location --> variabile --> la città che ha scelto
+
+        location = 'milan'
+
+        ##sc, model = load('models/scaler.joblib', 'models/model.joblib')
+        model, scaler, encoder = load(f'models/{location}_random_forest_gini.joblib',
+                                      f'models/{location}_scaler.joblib', f'models/{location}_encoder.joblib')
+        result = inference(row, model, scaler, encoder, feat_cols)
+        st.write(result)
+
