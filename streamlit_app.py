@@ -79,7 +79,7 @@ sub_columns = window_selection_c.columns(1)
 
 # informazioni base
 città = sub_columns[0].selectbox('Seleziona città',
-                                 ('Milano', 'Torino', 'Bologna', 'Firenze', 'Roma', 'Napoli', 'Palermo'))
+                                 ('MILANO', 'TORINO', 'BOLOGNA', 'FIRENZE', 'ROMA', 'NAPOLI', 'PALERMO'))
 temperatura = sub_columns[0].number_input('Seleziona temperatura °', -10, 50, 0)
 vento = sub_columns[0].number_input('Seleziona velocità vento km/h', 0, 140, 0)
 umidità = sub_columns[0].number_input('Seleziona umidità %', 0, 100, 0)
