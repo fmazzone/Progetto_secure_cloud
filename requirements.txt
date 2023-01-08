@@ -1,6 +1,6 @@
-pandas
-streamlit
+WorldWeatherPy
+seaborn
 joblib
 numpy
-pandas-profiling
+pandas
 scikit-learn
