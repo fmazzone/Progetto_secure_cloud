@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in florence: 0.7079694323144105
+Decision_tree_entropy(accuracy) in florence: 0.7021470160116449
+Random_forest_gini(accuracy) in florence: 0.7316229985443959
+Random_forest_entropy(accuracy) in florence: 0.7341703056768559
+Logistic_regression_newton-cg(accuracy) in florence: 0.7161572052401747
+Logistic_regression_lbfgs(accuracy) in florence: 0.7159752547307132
+Logistic_regression_liblinear(accuracy) in florence: 0.7046943231441049

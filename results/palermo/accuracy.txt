@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in palermo: 0.7045996592844974
+Decision_tree_entropy(accuracy) in palermo: 0.6892674616695059
+Random_forest_gini(accuracy) in palermo: 0.7325383304940375
+Random_forest_entropy(accuracy) in palermo: 0.7310051107325384
+Logistic_regression_newton-cg(accuracy) in palermo: 0.7078364565587735
+Logistic_regression_lbfgs(accuracy) in palermo: 0.7078364565587735
+Logistic_regression_liblinear(accuracy) in palermo: 0.7132879045996593

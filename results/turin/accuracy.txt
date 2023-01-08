@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in turin: 0.677704976093501
+Decision_tree_entropy(accuracy) in turin: 0.6867363201700017
+Random_forest_gini(accuracy) in turin: 0.7053302638569152
+Random_forest_entropy(accuracy) in turin: 0.7053302638569152
+Logistic_regression_newton-cg(accuracy) in turin: 0.6941738976447671
+Logistic_regression_lbfgs(accuracy) in turin: 0.6939968124667966
+Logistic_regression_liblinear(accuracy) in turin: 0.6840800425004427

@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in milan: 0.7019230769230769
+Decision_tree_entropy(accuracy) in milan: 0.6834045584045584
+Random_forest_gini(accuracy) in milan: 0.7142094017094017
+Random_forest_entropy(accuracy) in milan: 0.7120726495726496
+Logistic_regression_newton-cg(accuracy) in milan: 0.6892806267806267
+Logistic_regression_lbfgs(accuracy) in milan: 0.6891025641025641
+Logistic_regression_liblinear(accuracy) in milan: 0.6876780626780626

@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in naples: 0.6912808381209868
+Decision_tree_entropy(accuracy) in naples: 0.6818181818181818
+Random_forest_gini(accuracy) in naples: 0.6902669820885434
+Random_forest_entropy(accuracy) in naples: 0.6892531260561
+Logistic_regression_newton-cg(accuracy) in naples: 0.6742142615748564
+Logistic_regression_lbfgs(accuracy) in naples: 0.6742142615748564
+Logistic_regression_liblinear(accuracy) in naples: 0.6730314295370058

@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in bologna: 0.6816784228612769
+Decision_tree_entropy(accuracy) in bologna: 0.6838487972508591
+Random_forest_gini(accuracy) in bologna: 0.6959667209260264
+Random_forest_entropy(accuracy) in bologna: 0.6959667209260264
+Logistic_regression_newton-cg(accuracy) in bologna: 0.6824018809911376
+Logistic_regression_lbfgs(accuracy) in bologna: 0.6824018809911376
+Logistic_regression_liblinear(accuracy) in bologna: 0.6780611322119733

@@ -1,0 +1,7 @@
+Decision_tree_gini(accuracy) in rome: 0.7040989159891599
+Decision_tree_entropy(accuracy) in rome: 0.6969850948509485
+Random_forest_gini(accuracy) in rome: 0.7032520325203252
+Random_forest_entropy(accuracy) in rome: 0.7061314363143631
+Logistic_regression_newton-cg(accuracy) in rome: 0.698170731707317
+Logistic_regression_lbfgs(accuracy) in rome: 0.698170731707317
+Logistic_regression_liblinear(accuracy) in rome: 0.6939363143631436
