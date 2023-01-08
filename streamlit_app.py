@@ -12,7 +12,7 @@ st.set_page_config(
 st.markdown(""" 
 <style>
 div.stButton > button:first-child {
-background-color: #4682B4;color:WhiteSmoke;font-size:20px;height:3em;width:10em;border-radius:10px 10px 10px 10px;
+background-color: #1d3b54;color:WhiteSmoke;font-size:20px;height:3em;width:10em;border-radius:10px 10px 10px 10px;
 }
 .css-2trqyj:focus:not(:active) {
 border-color: #ffffff;
@@ -45,7 +45,8 @@ def add_bg_from_url():
              #https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png
              #https://miro.medium.com/max/680/1*KYrYFzjUUlKSZlgFDzEEDg.png
              background-attachment: fixed;
-             background-size: cover
+             background-size: cover;
+             background-color: #0E1117
          }}
          </style>
          """,
