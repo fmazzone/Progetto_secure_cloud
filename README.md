@@ -19,7 +19,7 @@ Installazione con pip:
 
 ```bash
 pip install -r requirements.txt
-
+```
 ## Files
 - pipeline.ipynb :  è Jupyter Notebook utilizzatp per il processo di automatizzazione del download_data. pre_processing, modelling e risultati
 - requirements.txt : contiene la lista libreria necessarie per l'esecuzione 
